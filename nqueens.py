@@ -1,14 +1,43 @@
+import utils as u
 # solve the n-queens by using backtracking
 
 def create_grid(n: int) -> list:
     return [[0] * n for _ in range(n)]
 
 
-def print_grid(grid: list) -> None:
+def print_grid(grid: list, solutions: int) -> None:
     for row in grid:
         for column in row:
             print(column, end=" ")
         print("", end="\n")
+    print("Solutions found -> ", solutions)
+    u.cursor_up(9)
+
+
+def print_completed(grid: list, solutions: int) -> None:
+    print("\033[42m", end="")
+    for r in grid:
+        for c in r:
+            char = "Q" if grid[r][c] else "-"
+            print(char, end=" ")
+        print(end="\n")
+    print("\033[0m", end="")
+    print("Solutions found -> ", solutions)
+    u.cursor_up(9)
+
+
+def print_wrong(grid: list, x:int, y:int, solutions: int) -> None:
+    for r in grid:
+        for c in r:
+            char = "Q" if grid[r][c] else "-"
+            if x == r and y == c:
+                print("\033[31mQ\033[0m", end=" ")
+            else:
+                print(char, end=" ")
+        print(end="\n")
+    print("Solutions found -> ", solutions)
+    u.cursor_up(9)
+    
 
     
 def is_safe(grid: list, i: int, j: int) -> bool:
@@ -30,6 +59,7 @@ def solutions(grid: list, i: int=0) -> int:
     n = len(grid)
     if i == n:
         return 1
+        
     else:
         counter = 0
         for j in range(n):
