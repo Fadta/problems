@@ -1,14 +1,15 @@
 import time
 import utils as u
 # solve the n-queens by using backtracking
-SLEEP_TIME = 0
-SUCCESS_TIME = 0.25
+SLEEP_TIME = 0.05
+SUCCESS_TIME = SLEEP_TIME
 
 def create_grid(n: int) -> list:
     return [[0] * n for _ in range(n)]
 
 
 def print_grid(grid: list, solutions: int) -> None:
+    n = len(grid)
     for r in grid:
         for c in r:
             if c == 1:
@@ -18,10 +19,11 @@ def print_grid(grid: list, solutions: int) -> None:
         print(end="\n")
     print("Solutions found -> ", solutions)
     time.sleep(SLEEP_TIME)
-    u.cursor_up(9)
+    u.cursor_up(n+1)
 
 
 def print_completed(grid: list, solutions: int) -> None:
+    n = len(grid)
     print("\033[42m", end="")
     for r in grid:
         for c in r:
@@ -31,7 +33,7 @@ def print_completed(grid: list, solutions: int) -> None:
     print("\033[0m", end="")
     print("Solutions found -> ", solutions)
     time.sleep(SUCCESS_TIME)
-    u.cursor_up(9)
+    u.cursor_up(n+1)
 
 
 def print_wrong(grid: list, i:int, j:int, solutions: int) -> None:
@@ -46,7 +48,7 @@ def print_wrong(grid: list, i:int, j:int, solutions: int) -> None:
         print(end="\n")
     print("Solutions found -> ", solutions)
     time.sleep(SLEEP_TIME)
-    u.cursor_up(9)
+    u.cursor_up(n+1)
     
 
     
@@ -85,6 +87,7 @@ def solutions(grid: list, i: int=0, count: int=0) -> int:
 
 
 def n_queens(n: int) -> int:
+    n = int(input("n = "))
     return solutions(create_grid(n))
 
 
