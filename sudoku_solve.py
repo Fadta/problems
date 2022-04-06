@@ -74,11 +74,14 @@ def sudoku_sample(sudoku:list[list[int]]) -> None:
 
 
 if __name__ == "__main__":
-    sudoku = create_sudoku_grid()
+    try:
+        sudoku = create_sudoku_grid()
 
-    sudoku_sample(sudoku)
-    print_sudoku_grid(sudoku)
-    print("\n")
+        sudoku_sample(sudoku)
+        print_sudoku_grid(sudoku)
+        print("\n")
 
-    solve(sudoku)
-    print_sudoku_grid(sudoku)
+        solve(sudoku)
+        print_sudoku_grid(sudoku)
+    except KeyboardInterrupt:
+        exit()

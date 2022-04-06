@@ -92,5 +92,8 @@ def n_queens(n: int) -> int:
 
 
 if __name__ == "__main__":
-    n = 8
-    print(f"solutions for n={n} -> {n_queens(n)}")
+    try:
+        n = 8
+        print(f"solutions for n={n} -> {n_queens(n)}")
+    except KeyboardInterrupt:
+        exit()
